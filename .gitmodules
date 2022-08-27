@@ -1,0 +1,4 @@
+[submodule "CoreGame/godot-cpp"]
+	path = CoreGame/godot-cpp
+	url = https://github.com/godotengine/godot-cpp
+	branch = 3.x
