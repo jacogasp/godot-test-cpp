@@ -43,5 +43,5 @@ jobs:
         run: cd CoreGame/ && ./build.sh $RUNNER_OS $ARCH $BUILD_TYPE
       - uses: actions/upload-artifact@v3
         with:
-          name: ${{ env.RUNNER_OS }}-${{ env.ARCH }}-${{ env.BUILD_TYPE }}_${{ matrix.config.artifact }}
+          name: ${{ matrix.os }}-${{ env.ARCH }}-${{ env.BUILD_TYPE }}_${{ matrix.config.artifact }}
           path: ${{ github.workspace }}/dist/${{ env.RUNNER_OS }}/${{ env.ARCH }}/${{ env.BUILD_TYPE }}/${{ matrix.config.artifact }}
