@@ -54,7 +54,8 @@ jobs:
           fi
           ls -la
           mv ${{ matrix.config.artifact }} ${{ github.workspace }}
+          echo "artifactPath=${{ github.workspace }}/${{ matrix.config.artifact }}" >> $GITHUB_ENV
       - uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.config.artifact }}
-          path:  ${{ github.workspace }}/${{ matrix.config.artifact }}
+          path: ${{ env.artifactPath }}
