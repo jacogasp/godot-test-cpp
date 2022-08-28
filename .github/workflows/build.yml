@@ -21,15 +21,15 @@ jobs:
       matrix:
         config:
           - name: "Linux Latest x64"
-            artifact: "Linux-x64.tar.gz"
+            artifact: "libCoreGame.so"
             bundle_name: "Linux-x64"
             os: ubuntu-latest
           - name: "macOS Latest x64"
-            artifact: "macOS-x64.zip"
+            artifact: "libCoreGame.dylib"
             bundle_name: "macOS-x64"
             os: macos-latest
           - name: "Windows Latest x64"
-            artifact: "windows-x64.zip"
+            artifact: "CoreGame.dll"
             bundle_name: "windows-x64"
             os: windows-latest
     steps:
@@ -40,6 +40,8 @@ jobs:
         run: |
           echo Install Deps
       - name: Build
-        # Some projects don't allow in-source building, so create a separate build directory
-        # We'll use this as our working directory for all subsequent commands
         run: cd CoreGame/ && ./build.sh $RUNNER_OS $ARCH $BUILD_TYPE
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.RUNNER_OS }}-${{ env.ARCH }}-${{ env.BUILD_TYPE }}_${{ matrix.config.artifact }}
+          path: ${{ github.workspace }}/dist/${{ env.RUNNER_OS }}/${{ env.ARCH }}/${{ env.BUILD_TYPE }}/${{ matrix.config.artifact }}
