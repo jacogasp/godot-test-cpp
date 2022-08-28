@@ -49,6 +49,7 @@ jobs:
         shell: bash
         working-directory: CoreGame/dist/CoreGame
         run: |
+          ls -la
           mv ${{ matrix.config.artifact }} ${{ github.workspace }}
       - uses: actions/upload-artifact@v3
         with:
