@@ -43,7 +43,9 @@ jobs:
         run: |
           cd CoreGame/
           ./build.sh $RUNNER_OS $ARCH $BUILD_TYPE
-          cd CoreGame/dist/${{ matrix.config.bundle_name }}/${{ env.ARCH }}/${{ env.BUILD_TYPE }}/CoreGame/
+      - name: Prepare Artifacts
+        run: |
+          cd ./dist/${{ matrix.config.bundle_name }}/${{ env.ARCH }}/${{ env.BUILD_TYPE }}/CoreGame/
           mv ${{ matrix.config.artifact }} ${{ github.workspace }}
       - uses: actions/upload-artifact@v3
         with:
