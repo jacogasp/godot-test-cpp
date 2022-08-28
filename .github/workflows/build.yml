@@ -22,15 +22,15 @@ jobs:
         config:
           - name: "Linux Latest x64"
             artifact: "libCoreGame.so"
-            bundle_name: "Linux-x64"
+            bundle_name: "Linux"
             os: ubuntu-latest
           - name: "macOS Latest x64"
             artifact: "libCoreGame.dylib"
-            bundle_name: "macOS-x64"
+            bundle_name: "macOS"
             os: macos-latest
           - name: "Windows Latest x64"
             artifact: "CoreGame.dll"
-            bundle_name: "windows-x64"
+            bundle_name: "Windows"
             os: windows-latest
     steps:
       - uses: actions/checkout@v2
@@ -44,4 +44,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.config.artifact }}
-          path: ${{ github.workspace }}/dist/${{ matrix.os }}/${{ env.ARCH }}/${{ env.BUILD_TYPE }}/${{ matrix.config.artifact }}
+          path: ${{ github.workspace }}/dist/${{ matrix.config.bundle_name }}/${{ env.ARCH }}/${{ env.BUILD_TYPE }}/${{ matrix.config.artifact }}
