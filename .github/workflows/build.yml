@@ -44,6 +44,7 @@ jobs:
           cd CoreGame/
           ./build.sh $RUNNER_OS $ARCH $BUILD_TYPE
       - name: Prepare Artifacts
+        shell: bash
         working-directory: ${{ github.workspace }}/CoreGame/dist
         run: |
           ls -la
