@@ -2,8 +2,6 @@ name: Build
 on:
   workflow_dispatch:
   push:
-    tags:
-      - v*
 env:
   GODOT_VERSION: 3.5
   GODOT_VERSION_LONG: 3.5.stable
