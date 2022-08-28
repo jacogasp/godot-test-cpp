@@ -39,14 +39,6 @@ jobs:
             curl ${GODOT_EXPORT_TEMPLATES_URL} -o ~/Library/Application Support/Godot/${GODOT_VERSION_LONG}/export_templates.tpz
             
           fi
-
-          if [ "$RUNNER_OS" == Linux ]; then
-            apt update && apt install -y snapd
-            snap install godot
-            mkdir -p /usr/local/share/godot/${GODOT_VERSION_LONG}
-            $GODOT_EXPORT_TEMPLATES_URL
-            curl ${GODOT_EXPORT_TEMPLATES_URL} -o /usr/local/share/godot/${GODOT_VERSION_LONG}/export_templates.tpz
-          fi
       - name: Build
         # Some projects don't allow in-source building, so create a separate build directory
         # We'll use this as our working directory for all subsequent commands
