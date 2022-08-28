@@ -5,7 +5,7 @@ build_type=$3
 
 default_build_type="Debug"
 default_arch="x64"
-available_platforms="macos windows"
+available_platforms="macOS Windows Linux"
 available_archs="x64 arm64"
 available_build_types="Debug Release"
 
