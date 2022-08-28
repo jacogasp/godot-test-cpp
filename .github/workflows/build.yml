@@ -51,10 +51,14 @@ jobs:
         run: |
           if [ "$RUNNER_OS" == "Windows" ]; then
             cd $BUILD_TYPE
+            artifactPath=${{ github.workspace }}\${{ matrix.config.artifact }}
+          else 
+            artifactPath=${{ github.workspace }}${{ matrix.config.artifact }}
           fi
           ls -la
           mv ${{ matrix.config.artifact }} ${{ github.workspace }}
-          echo "artifactPath=${{ github.workspace }}/${{ matrix.config.artifact }}" >> $GITHUB_ENV
+          echo $artifactPath >> $GITHUB_ENV
+         
       - uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.config.artifact }}
