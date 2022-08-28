@@ -29,7 +29,7 @@ jobs:
             bundle_name: "macOS"
             os: macos-latest
           - name: "Windows Latest x64"
-            artifact: "CoreGame.dll"
+            artifact: "CoreGame.lib"
             bundle_name: "Windows"
             os: windows-latest
     steps:
