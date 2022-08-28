@@ -1,0 +1,53 @@
+name: Build
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - v*
+env:
+  GODOT_VERSION: 3.5
+  GODOT_VERSION_LONG: 3.5.stable
+  GODOT_HEADLESS_URL: https://downloads.tuxfamily.org/godotengine/3.5/Godot_v3.5-stable_linux_headless.64.zip
+  GODOT_EXPORT_TEMPLATES_URL: https://downloads.tuxfamily.org/godotengine/3.5/Godot_3.5-stable_export_templates.tpz
+
+jobs:
+  build:
+    name: ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      matrix:
+        config:
+          - name: "Linux Latest x64"
+            artifact: "Linux-x64.tar.gz"
+            bundle_name: "Linux-x64"
+            os: ubuntu-latest
+          - name: "macOS Latest x64"
+            artifact: "macOS-x64.zip"
+            bundle_name: "macOS-x64"
+            os: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Install Deps
+        shell: bash
+        run: |
+          echo "$RUNNER_OS"
+          if [ "$RUNNER_OS" == macOS ]; then
+            brew install godot
+            mkdir -p ~/Library/Application Support/Godot/${GODOT_VERSION_LONG}/
+            curl ${GODOT_EXPORT_TEMPLATES_URL} -o ~/Library/Application Support/Godot/${GODOT_VERSION_LONG}/export_templates.tpz
+            
+          fi
+
+          if [ "$RUNNER_OS" == Linux ]; then
+            apt update && apt install -y snapd
+            snap install godot
+            mkdir -p /usr/local/share/godot/${GODOT_VERSION_LONG}
+            $GODOT_EXPORT_TEMPLATES_URL
+            curl ${GODOT_EXPORT_TEMPLATES_URL} -o /usr/local/share/godot/${GODOT_VERSION_LONG}/export_templates.tpz
+          fi
+      - name: Build
+        # Some projects don't allow in-source building, so create a separate build directory
+        # We'll use this as our working directory for all subsequent commands
+        run: cd ${{github.workspace}}/CoreGame/ && ./build macos
