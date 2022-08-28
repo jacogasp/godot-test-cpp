@@ -49,7 +49,7 @@ jobs:
         shell: bash
         working-directory: CoreGame/dist/CoreGame
         run: |
-          if [ "$RUNNER_OS" == "Windows ]; then
+          if [ "$RUNNER_OS" == "Windows" ]; then
             cd $BUILD_TYPE
           fi
           ls -la
