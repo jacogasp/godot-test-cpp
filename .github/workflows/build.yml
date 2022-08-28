@@ -44,4 +44,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.config.artifact }}
-          path: ${{ github.workspace }}/CoreGame/dist/${{ matrix.config.bundle_name }}/${{ env.ARCH }}/${{ env.BUILD_TYPE }}/${{ matrix.config.artifact }}
+          path: ${{ github.workspace }}/CoreGame/dist/${{ matrix.config.bundle_name }}/${{ env.ARCH }}/${{ env.BUILD_TYPE }}/CoreGame/${{ matrix.config.artifact }}
