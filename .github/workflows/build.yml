@@ -66,6 +66,7 @@ jobs:
           path: ~/dist/${{ matrix.config.artifact }}
   commit:
     name: "Push builds"
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
