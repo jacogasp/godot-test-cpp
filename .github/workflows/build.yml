@@ -51,9 +51,9 @@ jobs:
         run: |
           if [ "$RUNNER_OS" == "Windows" ]; then
             cd $BUILD_TYPE
-            artifactPath=${{ github.workspace }}\\${{ matrix.config.artifact }}
+            artifactPath="${{ github.workspace }}\${{ matrix.config.artifact }}"
           else 
-            artifactPath=${{ github.workspace }}/${{ matrix.config.artifact }}
+            artifactPath="${{ github.workspace }}/${{ matrix.config.artifact }}"
           fi
           ls -la
           mv ${{ matrix.config.artifact }} ${{ github.workspace }}
