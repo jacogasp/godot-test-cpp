@@ -53,16 +53,10 @@ jobs:
         working-directory: CoreGame/dist
         run: |
           cd ${{ matrix.config.bundle_name }}/${{ matrix.config.arch }}/${{ env.BUILD_TYPE }}
-          if [ "$RUNNER_OS" == "Windows" ]; then
-            artifactPath=${{ github.workspace }}\\${{ matrix.config.artifact }}
-          else 
-            artifactPath=${{ github.workspace }}/${{ matrix.config.artifact }}
-          fi
-          ls -la
-          mv ${{ matrix.config.artifact }} ${{ github.workspace }}
-          echo "artifactPath=${artifactPath}" >> $GITHUB_ENV
+          mkdir ~/dist && mv ${{ matrix.config.artifact }} ~/dist
+          cd ~/dist && pwd && ls -la
          
       - uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.config.artifact }}
-          path: ${{ env.artifactPath }}
+          path: ~/dist/${{ matrix.config.artifact }}
