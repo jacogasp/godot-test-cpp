@@ -10,8 +10,10 @@ add_library(
 target_link_libraries(CoreGame PUBLIC godot-cpp)
 
 message(STATUS "Build dir: ${BUILD_DIR}")
-set_target_properties(CoreGame PROPERTIES LIBRARY_OUTPUT_DIRECTORY_DEBUG "${BUILD_DIR}/")
-set_target_properties(CoreGame PROPERTIES LIBRARY_OUTPUT_DIRECTORY_RELEASE "${BUILD_DIR}/")
+set_target_properties(${targetname} PROPERTIES LIBRARY_OUTPUT_DIRECTORY_DEBUG "${BUILD_DIR}")
+set_target_properties(${targetname} PROPERTIES LIBRARY_OUTPUT_DIRECTORY_RELEASE "${BUILD_DIR}")
+set_target_properties(${targetname} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG "${BUILD_DIR}")
+set_target_properties(${targetname} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE "${BUILD_DIR}")
 
 target_include_directories(
     ${targetname} PUBLIC

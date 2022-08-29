@@ -26,7 +26,7 @@ jobs:
             arch: "x64"
             os: macos-latest
           - name: "Windows Latest x64"
-            artifact: "CoreGame.lib"
+            artifact: "CoreGame.dll"
             bundle_name: "Windows"
             arch: "x64"
             os: windows-latest

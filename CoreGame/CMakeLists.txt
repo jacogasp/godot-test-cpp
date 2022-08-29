@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.16.3)
 project(CoreGame)
 
+set(CMAKE_CXX_STANDARD 17)
+
 set(ARCH "x64")
 set(DEFAULT_BUILD_TYPE "Debug")
 
@@ -17,8 +19,11 @@ elseif(MSVC)
   set(PLATFORM "Windows")
 endif()
 
-set(BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/dist/${PLATFORM}/${ARCH}/${CMAKE_BUILD_TYPE}")
-set(CMAKE_CXX_STANDARD 17) # Feel free to use whatever standard you want
+if (MSVC)
+  set(BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}\\dist\\${PLATFORM}\\${ARCH}\\${CMAKE_BUILD_TYPE}")
+else()
+  set(BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/dist/${PLATFORM}/${ARCH}/${CMAKE_BUILD_TYPE}")
+endif()
 
 add_subdirectory(godot-cpp)
 add_subdirectory(CoreGame)
