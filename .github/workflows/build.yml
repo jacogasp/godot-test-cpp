@@ -58,7 +58,7 @@ jobs:
           ls -la
           mkdir ~/dist
           mv ${{ matrix.config.artifact }} ~/dist
-          cd ~/dist && ped && la -la
+          cd ~/dist && pwd && la -la
       - uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.config.artifact }}
