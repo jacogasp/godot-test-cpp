@@ -84,6 +84,8 @@ jobs:
           path: ${{ github.workspace }}/CoreGame/dist/${{ env.ARCH }}/${{ env.BUILD_TYPE }}/Windows
       - name: "Commit build files"
         run: |
-          git status
+          git config --global user.name 'GitHub'
+          git config --global user.email 'github@users.noreply.github.com'
           git add ${{ github.workspace }}/CoreGame/dist/
-          git status
+          git commit -m "Automatic builds update"
+          git push
