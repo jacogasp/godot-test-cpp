@@ -1,7 +1,7 @@
 project(CoreGame CXX)
-
+set(targetname "CoreGame")
 add_library(
-    CoreGame SHARED
+    ${targetname} SHARED
     src/GodotLibrary.cpp
     include/Controller.h
     src/Controller.cpp
@@ -9,8 +9,15 @@ add_library(
 
 target_link_libraries(CoreGame PUBLIC godot-cpp)
 
+if ( MSVC )
+    set_target_properties( ${targetname} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BUILD_DIRECTORY} )
+    set_target_properties( ${targetname} PROPERTIES LIBRARY_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BUILD_DIRECTORY} )
+    set_target_properties( ${targetname} PROPERTIES LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BUILD_DIRECTORY} )
+    # etc for the other available configuration types (MinSizeRel, RelWithDebInfo)
+endif ( MSVC )
+
 target_include_directories(
-    CoreGame PUBLIC
+    ${targetname} PUBLIC
     $<INSTALL_INTERFACE:include>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     PRIVATE

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.16.3)
 project(CoreGame)
 
 set(ARCHITECTURE "x64")
@@ -9,8 +9,7 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
   set(CMAKE_BUILD_TYPE "${default_build_type}")
 endif()
 
-set(default_build_dir "${CMAKE_CURRENT_SOURCE_DIR}/${CMAKE_BUILD_TYPE}")
-set(default_runtime_output_dir "${default_build_dir}/${ARCHITECTURE}")
+set(default_build_dir "${CMAKE_CURRENT_SOURCE_DIR}/${CMAKE_BUILD_TYPE}/${ARCHITECTURE}")
 
 set (CMAKE_BUILD_DIRECTORY "${default_build_dir}")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${default_runtime_output_dir}")

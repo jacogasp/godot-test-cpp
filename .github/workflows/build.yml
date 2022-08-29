@@ -50,7 +50,6 @@ jobs:
         working-directory: CoreGame/dist/CoreGame
         run: |
           if [ "$RUNNER_OS" == "Windows" ]; then
-            cd $BUILD_TYPE
             artifactPath="${{ github.workspace }}\${{ matrix.config.artifact }}"
           else 
             artifactPath="${{ github.workspace }}/${{ matrix.config.artifact }}"
