@@ -1,19 +1,23 @@
 cmake_minimum_required(VERSION 3.16.3)
 project(CoreGame)
 
-set(ARCHITECTURE "x64")
-set(default_build_type "Debug")
+set(ARCH "x64")
+set(DEFAULT_BUILD_TYPE "Debug")
 
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
-  message(STATUS "Setting build type to '${default_build_type}' as none was specified.")
-  set(CMAKE_BUILD_TYPE "${default_build_type}")
+  message(STATUS "Setting build type to '${DEFAULT_BUILD_TYPE}' as none was specified.")
+  set(CMAKE_BUILD_TYPE "${DEFAULT_BUILD_TYPE}")
 endif()
 
-set(default_build_dir "${CMAKE_CURRENT_SOURCE_DIR}/${CMAKE_BUILD_TYPE}/${ARCHITECTURE}")
+if (APPLE)
+  set(PLATFORM "macOS")
+elseif(UNIX AND NOT APPLE)
+  set(PLATFORM "Linux")
+elseif(MSVC)
+  set(PLATFORM "Windows")
+endif()
 
-set (CMAKE_BUILD_DIRECTORY "${default_build_dir}")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${default_runtime_output_dir}")
-message(STATUS "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
+set(BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/dist/${PLATFORM}/${ARCH}/")
 set(CMAKE_CXX_STANDARD 17) # Feel free to use whatever standard you want
 
 add_subdirectory(godot-cpp)

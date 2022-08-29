@@ -18,14 +18,17 @@ jobs:
           - name: "Linux Latest x64"
             artifact: "libCoreGame.so"
             bundle_name: "Linux"
+            arch: "x64"
             os: ubuntu-latest
           - name: "macOS Latest x64"
             artifact: "libCoreGame.dylib"
             bundle_name: "macOS"
+            arch: "x64"
             os: macos-latest
           - name: "Windows Latest x64"
             artifact: "CoreGame.lib"
             bundle_name: "Windows"
+            arch: "x64"
             os: windows-latest
     steps:
       - uses: actions/checkout@v2
@@ -38,27 +41,28 @@ jobs:
         shell: bash
         working-directory: CoreGame
         run: |
-          mkdir dist && cd dist
-          cmake .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+          mkdir -p dist/.cmake && cd dist/.cmake
+          cmake ${{ github.workspace }}/CoreGame -DCMAKE_BUILD_TYPE=$BUILD_TYPE
       - name: Build
         shell: bash
-        working-directory: CoreGame/dist
+        working-directory: CoreGame/dist/.cmake
         run: |
           cmake --build . -j8
       - name: Prepare Artifacts
         shell: bash
-        working-directory: CoreGame/dist/CoreGame
+        working-directory: CoreGame/dist
         run: |
+          cd ${{ matrix.config.bundle_name }}/${{ matrix.config.arch }}/${{ env.BUILD_TYPE }}
           if [ "$RUNNER_OS" == "Windows" ]; then
-            artifactPath="${{ github.workspace }}\${{ matrix.config.artifact }}"
+            artifactPath=${{ github.workspace }}\${{ matrix.config.artifact }}
           else 
-            artifactPath="${{ github.workspace }}/${{ matrix.config.artifact }}"
+            artifactPath=${{ github.workspace }}/${{ matrix.config.artifact }}
           fi
           ls -la
-          mkdir ~/dist
-          mv ${{ matrix.config.artifact }} ~/dist
-          cd ~/dist && pwd && ls -la
+          mv ${{ matrix.config.artifact }} ${{ github.workspace }}
+          echo "${artifactPath}" >> $GITHUB_ENV
+         
       - uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.config.artifact }}
-          path: ~/dist/${{ matrix.config.artifact }}
+          path: ${{ env.artifactPath }}
