@@ -54,7 +54,7 @@ jobs:
         run: |
           cd ${{ matrix.config.bundle_name }}/${{ matrix.config.arch }}/${{ env.BUILD_TYPE }}
           if [ "$RUNNER_OS" == "Windows" ]; then
-            artifactPath=${{ github.workspace }}\${{ matrix.config.artifact }}
+            artifactPath=${{ github.workspace }}\\${{ matrix.config.artifact }}
           else 
             artifactPath=${{ github.workspace }}/${{ matrix.config.artifact }}
           fi
