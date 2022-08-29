@@ -4,6 +4,10 @@ on:
   push:
 env:
   BUILD_TYPE: Debug
+  ARCH: x64
+  LINUX_ARTIFACT: libCoreGame.so
+  MACOS_ARTIFACT: libCoreGame.dylib
+  WINDOWS_ARTIFACT: CoreGame.dll
 
 jobs:
   build:
@@ -60,3 +64,25 @@ jobs:
         with:
           name: ${{ matrix.config.artifact }}
           path: ~/dist/${{ matrix.config.artifact }}
+  commit:
+    name: "Push builds"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.LINUX_ARTIFACT }}
+          path: ${{ github.workspace }}/CoreGame/dist/${{ env.ARCH }}/${{ env.BUILD_TYPE }}/Linux
+      - uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.MACOS_ARTIFACT }}
+          path: ${{ github.workspace }}/CoreGame/dist/${{ env.ARCH }}/${{ env.BUILD_TYPE }}/macOS
+      - uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.WINDOWS_ARTIFACT }}
+          path: ${{ github.workspace }}/CoreGame/dist/${{ env.ARCH }}/${{ env.BUILD_TYPE }}/Windows
+      - name: "Commit build files"
+        run: |
+          git status
+          git add ${{ github.workspace }}/CoreGame/dist/
+          git status
