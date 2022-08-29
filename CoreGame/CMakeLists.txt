@@ -17,7 +17,7 @@ elseif(MSVC)
   set(PLATFORM "Windows")
 endif()
 
-set(BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/dist/${PLATFORM}/${ARCH}/")
+set(BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/dist/${PLATFORM}/${ARCH}/${CMAKE_BUILD_TYPE}")
 set(CMAKE_CXX_STANDARD 17) # Feel free to use whatever standard you want
 
 add_subdirectory(godot-cpp)
