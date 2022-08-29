@@ -7,7 +7,7 @@ reloadable=true
 
 [entry]
 
-OSX.64="res://CoreGame/dist/macos/x64/Debug/CoreGame/libCoreGame.dylib"
+OSX.64="res://CoreGame/dist/macOS/x64/Debug/libCoreGame.dylib"
 
 [dependencies]
 
