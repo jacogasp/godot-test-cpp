@@ -1,10 +1,10 @@
 project(CoreGame CXX)
 set(targetname "CoreGame")
 add_library(
-    ${targetname} SHARED
-    src/GodotLibrary.cpp
-    include/Controller.h
-    src/Controller.cpp
+        ${targetname} SHARED
+        src/GodotLibrary.cpp
+        include/Controller.h src/Controller.cpp
+        include/Player.h src/Player.cpp
 )
 
 target_link_libraries(CoreGame PUBLIC godot-cpp)
@@ -16,9 +16,9 @@ set_target_properties(${targetname} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG "$
 set_target_properties(${targetname} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE "${BUILD_DIR}")
 
 target_include_directories(
-    ${targetname} PUBLIC
-    $<INSTALL_INTERFACE:include>
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-    PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/src
+        ${targetname} PUBLIC
+        $<INSTALL_INTERFACE:include>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
