@@ -73,15 +73,15 @@ jobs:
       # - uses: actions/download-artifact@v3
       #  with:
       #    name: ${{ env.LINUX_ARTIFACT }}
-      #    path: ${{ github.workspace }}/CoreGame/dist/${{ env.ARCH }}/${{ env.BUILD_TYPE }}/Linux
+      #    path: ${{ github.workspace }}/CoreGame/dist/Linux/${{ env.ARCH }}/${{ env.BUILD_TYPE }}
       - uses: actions/download-artifact@v3
         with:
           name: ${{ env.MACOS_ARTIFACT }}
-          path: ${{ github.workspace }}/CoreGame/dist/${{ env.ARCH }}/${{ env.BUILD_TYPE }}/macOS
+          path: ${{ github.workspace }}/CoreGame/dist/macOS/${{ env.ARCH }}/${{ env.BUILD_TYPE }}
       - uses: actions/download-artifact@v3
         with:
           name: ${{ env.WINDOWS_ARTIFACT }}
-          path: ${{ github.workspace }}/CoreGame/dist/${{ env.ARCH }}/${{ env.BUILD_TYPE }}/Windows
+          path: ${{ github.workspace }}/CoreGame/dist/Windows/${{ env.ARCH }}/${{ env.BUILD_TYPE }}
       - name: "Commit build files"
         run: |
           git config --global user.name 'GitHub'
