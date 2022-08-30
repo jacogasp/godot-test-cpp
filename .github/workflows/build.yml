@@ -70,10 +70,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/download-artifact@v3
-        with:
-          name: ${{ env.LINUX_ARTIFACT }}
-          path: ${{ github.workspace }}/CoreGame/dist/${{ env.ARCH }}/${{ env.BUILD_TYPE }}/Linux
+      # - uses: actions/download-artifact@v3
+      #  with:
+      #    name: ${{ env.LINUX_ARTIFACT }}
+      #    path: ${{ github.workspace }}/CoreGame/dist/${{ env.ARCH }}/${{ env.BUILD_TYPE }}/Linux
       - uses: actions/download-artifact@v3
         with:
           name: ${{ env.MACOS_ARTIFACT }}
