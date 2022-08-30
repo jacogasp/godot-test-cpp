@@ -14,6 +14,11 @@ config/name="GodotTest"
 run/main_scene="res://Scenes/main.tscn"
 config/icon="res://icon.png"
 
+[global]
+
+scene=false
+main=false
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
