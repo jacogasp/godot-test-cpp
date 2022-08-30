@@ -10,7 +10,6 @@
 #include <CollisionShape2D.hpp>
 #include <Godot.hpp>
 #include <Input.hpp>
-#include <iostream>
 
 class Player : public godot::Area2D {
 GODOT_CLASS(Player, godot::Area2D)

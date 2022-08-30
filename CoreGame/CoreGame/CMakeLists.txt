@@ -5,7 +5,7 @@ add_library(
         src/GodotLibrary.cpp
         include/Controller.h src/Controller.cpp
         include/Player.h src/Player.cpp
-)
+        include/Enemy.h src/Enemy.cpp)
 
 target_link_libraries(CoreGame PUBLIC godot-cpp)
 
