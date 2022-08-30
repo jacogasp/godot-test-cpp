@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - CoreGame/CoreGame
+      - .github
 env:
   BUILD_TYPE: Debug
   ARCH: x64
@@ -88,6 +89,7 @@ jobs:
         run: |
           git config --global user.name 'GitHub'
           git config --global user.email 'github@users.noreply.github.com'
+          git pull
           git add ${{ github.workspace }}/CoreGame/dist/
           git commit -m "Automatic builds update"
           git push
