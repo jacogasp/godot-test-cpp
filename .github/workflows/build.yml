@@ -19,11 +19,11 @@ jobs:
     strategy:
       matrix:
         config:
-          - name: "Linux Latest x64"
-            artifact: "libCoreGame.so"
-            bundle_name: "Linux"
-            arch: "x64"
-            os: ubuntu-latest
+#          - name: "Linux Latest x64"
+#            artifact: "libCoreGame.so"
+#            bundle_name: "Linux"
+#            arch: "x64"
+#            os: ubuntu-latest
           - name: "macOS Latest x64"
             artifact: "libCoreGame.dylib"
             bundle_name: "macOS"
