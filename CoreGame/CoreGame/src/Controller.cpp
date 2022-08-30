@@ -3,6 +3,7 @@
 void godot::Controller::_init()
 {
     motion = Vector2(0, 0);
+    godot::Godot::print("Init controller");
 }
 
 void godot::Controller::_register_methods()
