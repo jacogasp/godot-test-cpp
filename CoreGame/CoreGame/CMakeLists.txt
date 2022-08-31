@@ -5,7 +5,12 @@ add_library(
         src/GodotLibrary.cpp
         include/Controller.h src/Controller.cpp
         include/Player.h src/Player.cpp
-        include/Enemy.h src/Enemy.cpp)
+        include/Enemy.h src/Enemy.cpp
+
+        include/Mob.h src/Mob.cpp
+        include/HUD.h src/HUD.cpp
+        include/Main.h src/Main.cpp
+)
 
 target_link_libraries(CoreGame PUBLIC godot-cpp)
 
