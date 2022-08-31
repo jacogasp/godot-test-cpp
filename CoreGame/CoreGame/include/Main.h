@@ -12,6 +12,7 @@
 #include <PathFollow2D.hpp>
 #include <RandomNumberGenerator.hpp>
 #include <Timer.hpp>
+#include <SceneTree.hpp>
 
 #include "HUD.h"
 #include "Player.h"

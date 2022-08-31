@@ -12,9 +12,13 @@ void Main::_ready() {
   _mob_timer = get_node<godot::Timer>("MobTimer");
   _start_timer = get_node<godot::Timer>("StartTimer");
   _score_timer = get_node<godot::Timer>("ScoreTimer");
+  _start_timer->connect("timeout", this, "_on_StartTimer_timeout");
+  _mob_timer->connect("timeout", this, "_on_MobTimer_timeout");
+  _score_timer->connect("timeout", this, "_on_ScoreTimer_timeout");
   _random = static_cast<godot::Ref<godot::RandomNumberGenerator>>(godot::RandomNumberGenerator::_new());
   _random->randomize();
   godot::Godot::print("Main scene ready");
+  new_game();
 }
 
 void Main::new_game() {
@@ -29,7 +33,6 @@ void Main::game_over() {
   _mob_timer->stop();
 }
 
-
 void Main::_on_MobTimer_timeout() {
   auto *mob = mob_scene->instance();
   _mob_spawn_location->set_offset(static_cast<real_t>(_random->randi()));
@@ -42,19 +45,22 @@ void Main::_on_MobTimer_timeout() {
   add_child(mob);
 }
 
-void Main::_on_ScoreTimer_timeout() { score += 1; }
+void Main::_on_ScoreTimer_timeout() {
+  score += 1;
+}
 
 void Main::_on_StartTimer_timeout() {
+  godot::Godot::print("Stared timers");
   _mob_timer->start();
   _score_timer->start();
 }
 
-void Main::_register_methods() { 
-  godot::register_method("_ready", &Main::_ready); 
-    godot::register_method("new_game", &Main::new_game);
-    godot::register_method("game_over", &Main::game_over);
-    godot::register_method("_on_MobTimer_timeout", &Main::_on_MobTimer_timeout);
-    godot::register_method("_on_StartTimer_timeout", &Main::_on_StartTimer_timeout);
-    godot::register_method("_on_ScoreTimer_timeout", &Main::_on_ScoreTimer_timeout);
-    godot::register_property("mob_scene", &Main::mob_scene, static_cast<godot::Ref<godot::PackedScene>>(nullptr));
+void Main::_register_methods() {
+  godot::register_method("_ready", &Main::_ready);
+  godot::register_method("new_game", &Main::new_game);
+  godot::register_method("game_over", &Main::game_over);
+  godot::register_method("_on_MobTimer_timeout", &Main::_on_MobTimer_timeout);
+  godot::register_method("_on_StartTimer_timeout", &Main::_on_StartTimer_timeout);
+  godot::register_method("_on_ScoreTimer_timeout", &Main::_on_ScoreTimer_timeout);
+  godot::register_property("mob_scene", &Main::mob_scene, static_cast<godot::Ref<godot::PackedScene>>(nullptr));
 }
