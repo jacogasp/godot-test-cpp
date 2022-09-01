@@ -27,7 +27,7 @@ void HUD::show_get_ready() {
   _get_ready_message_timer->start();
 }
 
-void HUD::show_get_gameover() {
+void HUD::show_gameover() {
   _messageLabel->set_text("Gameover");
   _messageLabel->show();
   _start_message_timer->start();
@@ -51,6 +51,7 @@ void HUD::_on_StartButton_pressed() {
 void HUD::_on_StartMessageTimer_timeout() {
   _messageLabel->set_text("Dooooooooodge the\nCreeps");
   _messageLabel->show();
+  _startButton->show();
   _start_button_timer->start();
   godot::Godot::print("Start message Timeout");
 }
@@ -64,6 +65,10 @@ void HUD::_on_StartButtonTimer_timeout() { godot::Godot::print("Start button Tim
 
 void HUD::_register_methods() {
   godot::register_method("_ready", &HUD::_ready);
+  godot::register_method("show_get_ready", &HUD::show_get_ready);
+  godot::register_method("show_game_over", &HUD::show_gameover);
+  godot::register_method("update_score", &HUD::update_score);
+  godot::register_method("_on_StartButton_pressed", &HUD::_on_StartButton_pressed);
   godot::register_method("_on_StartMessageTimer_timeout", &HUD::_on_StartMessageTimer_timeout);
   godot::register_method("_on_GetReadyMessageTimer_timeout", &HUD::_on_GetReadyMessageTimer_timeout);
   godot::register_method("_on_StartButtonTimer_timeout", &HUD::_on_StartButtonTimer_timeout);

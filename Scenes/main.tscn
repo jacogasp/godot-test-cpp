@@ -42,4 +42,5 @@ rotation = 1.57083
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 
+[connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]

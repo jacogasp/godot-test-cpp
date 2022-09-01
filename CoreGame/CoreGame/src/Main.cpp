@@ -24,13 +24,14 @@ void Main::new_game() {
   godot::Godot::print("New game!");
   get_tree()->call_group("mobs", "queue_free");
   score = 0;
+  _hud->update_score(score);
   _hud->show_get_ready();
   _player->start(_start_position->get_position());
   _start_timer->start();
 }
 
 void Main::game_over() {
-  _hud->show_get_gameover();
+  _hud->show_gameover();
   _score_timer->stop();
   _mob_timer->stop();
 }

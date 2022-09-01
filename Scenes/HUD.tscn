@@ -43,7 +43,12 @@ custom_fonts/font = SubResource( 1 )
 text = "Start"
 
 [node name="StartMessageTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 
 [node name="GetReadyMessageTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="StartButtonTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
