@@ -46,7 +46,6 @@ frames = SubResource( 2 )
 animation = "flying"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 504, 305 )
 rotation = 1.5708
 shape = SubResource( 3 )
 

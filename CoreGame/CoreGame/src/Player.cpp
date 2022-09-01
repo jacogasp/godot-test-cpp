@@ -30,7 +30,7 @@ void Player::_register_methods() {
   godot::register_method("_ready", &Player::_ready);
   godot::register_method("start", &Player::start);
   godot::register_method("_process", &Player::_process);
-  godot::register_method("_onPlayer_body_entered", &Player::_on_Player_body_entered);
+  godot::register_method("_on_Player_body_entered", &Player::_on_Player_body_entered);
   godot::register_method("_on_VisibilityNotifier2D_screen_exited", &Player::_on_VisibilityNotifier2D_screen_exited);
 }
 
