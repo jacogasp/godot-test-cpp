@@ -4,19 +4,25 @@
 
 #include "Main.h"
 
-void Main::_ready() {
-  _hud = get_node<HUD>("HUD");
-  _player = get_node<Player>("Player");
-  _start_position = get_node<godot::Node2D>("StartPosition");
-  _mob_spawn_location = get_node<godot::PathFollow2D>("MobPath/MobSpawnLocation");
+void Main::setup_timers() {
   _mob_timer = get_node<godot::Timer>("MobTimer");
   _start_timer = get_node<godot::Timer>("StartTimer");
   _score_timer = get_node<godot::Timer>("ScoreTimer");
   _start_timer->connect("timeout", this, "_on_StartTimer_timeout");
   _mob_timer->connect("timeout", this, "_on_MobTimer_timeout");
   _score_timer->connect("timeout", this, "_on_ScoreTimer_timeout");
+}
+
+void Main::_ready() {
+  _hud = get_node<HUD>("HUD");
+  _player = get_node<Player>("Player");
+  _start_position = get_node<godot::Node2D>("StartPosition");
+  _mob_spawn_location = get_node<godot::PathFollow2D>("MobPath/MobSpawnLocation");
+  setup_timers();
   _random = static_cast<godot::Ref<godot::RandomNumberGenerator>>(godot::RandomNumberGenerator::_new());
   _random->randomize();
+  _music = get_node<godot::AudioStreamPlayer>("Music");
+  _game_over_sound = get_node<godot::AudioStreamPlayer>("Music");
   godot::Godot::print("Main scene ready");
 }
 
@@ -28,12 +34,16 @@ void Main::new_game() {
   _hud->show_get_ready();
   _player->start(_start_position->get_position());
   _start_timer->start();
+  _music->play();
 }
 
 void Main::game_over() {
+  godot::Godot::print("Game over");
   _hud->show_gameover();
   _score_timer->stop();
   _mob_timer->stop();
+  _music->stop();
+  _game_over_sound->play();
 }
 
 void Main::_on_MobTimer_timeout() {

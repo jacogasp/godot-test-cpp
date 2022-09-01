@@ -49,7 +49,7 @@ void HUD::_on_StartButton_pressed() {
 }
 
 void HUD::_on_StartMessageTimer_timeout() {
-  _messageLabel->set_text("Dooooooooodge the\nCreeps");
+  _messageLabel->set_text("Dodge the\nCreeps");
   _messageLabel->show();
   _startButton->show();
   _start_button_timer->start();

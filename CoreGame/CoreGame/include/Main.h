@@ -5,14 +5,15 @@
 #ifndef COREGAME_MAIN_H
 #define COREGAME_MAIN_H
 
+#include <AudioStreamPlayer.hpp>
 #include <Godot.hpp>
 #include <Node.hpp>
 #include <Node2D.hpp>
 #include <PackedScene.hpp>
 #include <PathFollow2D.hpp>
 #include <RandomNumberGenerator.hpp>
-#include <Timer.hpp>
 #include <SceneTree.hpp>
+#include <Timer.hpp>
 
 #include "HUD.h"
 #include "Player.h"
@@ -29,6 +30,10 @@ class Main : public godot::Node {
   godot::Timer *_score_timer;
   godot::PathFollow2D *_mob_spawn_location;
   godot::Ref<godot::RandomNumberGenerator> _random;
+  godot::AudioStreamPlayer *_music;
+  godot::AudioStreamPlayer *_game_over_sound;
+
+  void setup_timers();
 
 public:
   godot::Ref<godot::PackedScene> mob_scene;

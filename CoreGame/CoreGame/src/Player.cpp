@@ -38,6 +38,16 @@ void Player::_process(const double p_delta) {
   godot::Vector2 velocity{0, 0};
   velocity.x = _input->get_action_strength("move_right") - _input->get_action_strength("move_left");
   velocity.y = _input->get_action_strength("move_down") - _input->get_action_strength("move_up");
+  if (velocity.x != 0) {
+    _animated_sprite->set_animation("walk");
+    _animated_sprite->set_flip_v(false);
+    // See the note below about boolean assignment.
+    _animated_sprite->set_flip_h(velocity.x < 0);
+  } else if (velocity.y != 0) {
+    _animated_sprite->set_animation("up");
+    _animated_sprite->set_flip_v(velocity.y > 0);
+  }
+
   if (velocity.length() > 0) {
     velocity = velocity.normalized() * speed;
     _animated_sprite->play();
