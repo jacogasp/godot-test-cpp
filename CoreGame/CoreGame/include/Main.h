@@ -20,7 +20,7 @@
 class Main : public godot::Node {
   GODOT_CLASS(Main, godot::Node)
 
-  int score;
+  int score{0};
   Player *_player;
   HUD *_hud;
   godot::Node2D *_start_position;

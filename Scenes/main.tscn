@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Main.gdns" type="Script" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Mob.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -13,16 +14,13 @@ _data = {
 script = ExtResource( 1 )
 mob_scene = ExtResource( 3 )
 
+[node name="Player" parent="." instance=ExtResource( 2 )]
+
 [node name="StartTimer" type="Timer" parent="."]
 one_shot = true
 __meta__ = {
 "_editor_description_": ""
 }
-
-[node name="Player" parent="." instance=ExtResource( 2 )]
-
-[node name="HUD" type="Node2D" parent="."]
-position = Vector2( 509, 288 )
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -41,3 +39,5 @@ curve = SubResource( 1 )
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
 position = Vector2( 1024, 0 )
 rotation = 1.57083
+
+[node name="HUD" parent="." instance=ExtResource( 4 )]

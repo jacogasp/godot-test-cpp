@@ -1,4 +1,5 @@
 #include "Controller.h"
+#include "HUD.h"
 #include "Main.h"
 #include "Mob.h"
 #include "Player.h"
@@ -18,4 +19,5 @@ extern "C" void GDN_EXPORT godot_nativescript_init(void *handle) {
   register_class<Player>();
   register_class<Mob>();
   register_class<Main>();
+  register_class<HUD>();
 }
