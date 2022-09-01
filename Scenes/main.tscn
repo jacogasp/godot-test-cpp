@@ -41,3 +41,5 @@ position = Vector2( 1024, 0 )
 rotation = 1.57083
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]
+
+[connection signal="start_game" from="HUD" to="." method="new_game"]

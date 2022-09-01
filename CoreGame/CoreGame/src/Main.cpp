@@ -18,15 +18,13 @@ void Main::_ready() {
   _random = static_cast<godot::Ref<godot::RandomNumberGenerator>>(godot::RandomNumberGenerator::_new());
   _random->randomize();
   godot::Godot::print("Main scene ready");
-  new_game();
 }
 
 void Main::new_game() {
   godot::Godot::print("New game!");
   get_tree()->call_group("mobs", "queue_free");
   score = 0;
-  _hud->update_score(score);
-//  _hud->show_get_ready();
+  _hud->show_get_ready();
   _player->start(_start_position->get_position());
   _start_timer->start();
 }
@@ -51,8 +49,6 @@ void Main::_on_MobTimer_timeout() {
 
 void Main::_on_ScoreTimer_timeout() {
   score += 1;
-  int culo = 0;
-  godot::Godot::print(godot::Variant(culo));
   _hud->update_score(score);
 }
 
