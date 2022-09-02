@@ -29,7 +29,7 @@ public:
   void _ready();
   void setup_timers();
   void show_get_ready();
-  void show_gameover();
+  void show_game_over();
   void update_score(int score);
   void _on_StartButton_pressed();
   void _on_StartButtonTimer_timeout();

@@ -22,7 +22,7 @@ void Main::_ready() {
   _random = static_cast<godot::Ref<godot::RandomNumberGenerator>>(godot::RandomNumberGenerator::_new());
   _random->randomize();
   _music = get_node<godot::AudioStreamPlayer>("Music");
-  _game_over_sound = get_node<godot::AudioStreamPlayer>("Music");
+  _game_over_sound = get_node<godot::AudioStreamPlayer>("GameOver");
   godot::Godot::print("Main scene ready");
 }
 
@@ -39,7 +39,7 @@ void Main::new_game() {
 
 void Main::game_over() {
   godot::Godot::print("Game over");
-  _hud->show_gameover();
+  _hud->show_game_over();
   _score_timer->stop();
   _mob_timer->stop();
   _music->stop();
