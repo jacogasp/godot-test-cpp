@@ -2,6 +2,9 @@ name: Build
 on:
   workflow_dispatch:
   push:
+    paths:
+      - CoreGame/CoreGame
+      - .github
 env:
   BUILD_TYPE: Debug
   ARCH: x64
